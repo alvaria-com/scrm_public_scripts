@@ -69,7 +69,7 @@ if [[ "$task" =~ install|both ]]; then
    echo 'com.fortify.sca.Phase0HigherOrder.Languages=""' >> $INSTALL_PATH/Core/config/fortify-sca.properties
 
    ## Update path to fortify cleint and make it work on reboots
-   echo "export PATH=$INSTALL_PATH/bin:$PATH" | sudo tee /etc/profile.d/fortify_env.sh > /dev/null
+   echo "export PATH=${INSTALL_PATH}/bin:$PATH" | sudo tee /etc/profile.d/fortify_env.sh > /dev/null
 
    ## Updte the client with latest data from fortify site
    fortifyupdate
