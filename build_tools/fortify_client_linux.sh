@@ -72,7 +72,7 @@ if [[ "$task" =~ install|both ]]; then
    echo "export PATH=${INSTALL_PATH}/bin:\$PATH" | sudo tee /etc/profile.d/fortify_env.sh > /dev/null
 
    ## Updte the client with latest data from fortify site
-   fortifyupdate
+   ${INSTALL_PATH}/bin/fortifyupdate
 
    ## Remove old installer files
    rm -f $TEMP_PATH/fortify-client.run
