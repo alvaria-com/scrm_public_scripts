@@ -74,6 +74,9 @@ if [[ "$task" =~ install|both ]]; then
    ## Updte the client with latest data from fortify site
    fortifyupdate
 
+   ## Remove old installer files
+   rm -f $TEMP_PATH/fortify-client.run
+
 else
     echo "  Task is not set to install fortify.  Skipping this step."
 fi
