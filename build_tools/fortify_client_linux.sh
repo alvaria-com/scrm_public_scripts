@@ -3,7 +3,7 @@
 # 
 #
 #  Run this script on a new linux system is to run the following command. You can pass arguments to the shell using the -s option:
-#   curl -Lfk https://github.com/alvaria-com/scrm_public_scripts/raw/refs/heads/main/build_tools/fortify_client_linux.sh | bash -s <download|install|both>
+#   curl -Lfk https://github.com/alvaria-com/scrm_public_scripts/raw/refs/heads/main/build_tools/fortify_client_linux.sh | sudo bash -s <download|install|both>
 #
 # Created: Mar-31-2025 Hubers
 #-----------------------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ fi
 
 
 ### Download Fortify client files
-echo "Download Fortify client files for Lunix..."
+echo "Download Fortify client files for Linux OS..."
 if [[ "$task" =~ download|both ]]; then
    HTTP_STATUS=$(curl -Is -o /dev/null -w "%{http_code}" "$FORTIFY_FILE_URL")
    if [ "$HTTP_STATUS" -eq 200 ]; then
@@ -53,7 +53,7 @@ else
 fi
 
 
-echo "Install Fortify client for Lunix..."
+echo "Install Fortify client for Linux..."
 if [[ "$task" =~ install|both ]]; then
    ## Install client
    $TEMP_PATH/fortify-client.run --mode unattended \
@@ -69,7 +69,7 @@ if [[ "$task" =~ install|both ]]; then
    echo 'com.fortify.sca.Phase0HigherOrder.Languages=""' >> $INSTALL_PATH/Core/config/fortify-sca.properties
 
    ## Update path to fortify cleint and make it work on reboots
-   echo 'export PATH="$INSTALL_PATH/bin:$PATH"' | sudo tee /etc/profile.d/fortify_env.sh > /dev/null
+   echo "export PATH=$INSTALL_PATH/bin:$PATH" | sudo tee /etc/profile.d/fortify_env.sh > /dev/null
 
    ## Updte the client with latest data from fortify site
    fortifyupdate
