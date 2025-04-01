@@ -8,16 +8,12 @@
 # Created: Mar-31-2025 Hubers
 #-----------------------------------------------------------------------------------------------
 
-FORTIFY_FILE_URL='https://nexus.aws.alvaria.com/nexus/repository/alvaria-prod-hosted/scrm/build_tools/fortify/client/Fortify_SCA_24.4.0_linux_x64.run'
-FORTIFY_LICENSE_FILE_URL='https://nexus.aws.alvaria.com/nexus/repository/alvaria-prod-hosted/scrm/build_tools/fortify/license/fortify.license'
-TEMP_PATH='/tmp'
+FORTIFY_FILE_URL='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-prod-hosted/scrm/build_tools/fortify/client/Fortify_SCA_24.4.0_linux_x64.run'
+FORTIFY_LICENSE_FILE_URL='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-prod-hosted/scrm/build_tools/fortify/license/fortify.license'
+
 INSTALL_PATH='/opt/fortify/sca_client'
+TEMP_PATH='/tmp'
 
-
-echo "--------------------------------------------------------"
-echo "- Start of script and is doing task '$task'"
-echo "--------------------------------------------------------"
-echo " "
 
 # check if command line argument is empty or not present
 if [ -z $1 ]; then
@@ -27,13 +23,18 @@ else
    task="$1"
 fi
 
+echo "--------------------------------------------------------"
+echo "- Start of script and is doing task '$task'"
+echo "--------------------------------------------------------"
+echo " "
+
 
 ### Download Fortify client files
 echo "Download Fortify client files for Linux OS..."
 if [[ "$task" =~ download|both ]]; then
    HTTP_STATUS=$(curl -Is -o /dev/null -w "%{http_code}" "$FORTIFY_FILE_URL")
    if [ "$HTTP_STATUS" -eq 200 ]; then
-      echo "  URL for FORTIFY_FILE_URL exist. Let download it...";
+      echo "  URL for $FORTIFY_FILE_URL exist. Let download it...";
       curl -o $TEMP_PATH/fortify-client.run "$FORTIFY_FILE_URL"
       chmod +x $TEMP_PATH/fortify-client.run
    else
@@ -42,7 +43,7 @@ if [[ "$task" =~ download|both ]]; then
    fi
    HTTP_STATUS=$(curl -Is -o /dev/null -w "%{http_code}" "$FORTIFY_LICENSE_FILE_URL")
    if [ "$HTTP_STATUS" -eq 200 ]; then
-      echo "  URL for FORTIFY_LICENSE_FILE_URL exist. Let download it...";
+      echo "  URL for $FORTIFY_LICENSE_FILE_URL exist. Let download it...";
       curl -o $TEMP_PATH/fortify-license "$FORTIFY_LICENSE_FILE_URL"
    else
       echo "-ERROR-  URL for FORTIFY_LICENSE_FILE_URL does NOT exist. Status code: $HTTP_STATUS";
