@@ -33,7 +33,7 @@ echo "Download Fortify client files for Linux OS..."
 if [[ "$task" =~ download|both ]]; then
    HTTP_STATUS=$(curl -Is -o /dev/null -w "%{http_code}" "$FORTIFY_FILE_URL")
    if [ "$HTTP_STATUS" -eq 200 ]; then
-      echo "  URL for FORTIFY_FILE_URL exist. Let download it...";
+      echo "  URL for $FORTIFY_FILE_URL exist. Let download it...";
       curl -o $TEMP_PATH/fortify-client.run "$FORTIFY_FILE_URL"
       chmod +x $TEMP_PATH/fortify-client.run
    else
@@ -42,7 +42,7 @@ if [[ "$task" =~ download|both ]]; then
    fi
    HTTP_STATUS=$(curl -Is -o /dev/null -w "%{http_code}" "$FORTIFY_LICENSE_FILE_URL")
    if [ "$HTTP_STATUS" -eq 200 ]; then
-      echo "  URL for FORTIFY_LICENSE_FILE_URL exist. Let download it...";
+      echo "  URL for $FORTIFY_LICENSE_FILE_URL exist. Let download it...";
       curl -o $TEMP_PATH/fortify-license "$FORTIFY_LICENSE_FILE_URL"
    else
       echo "-ERROR-  URL for FORTIFY_LICENSE_FILE_URL does NOT exist. Status code: $HTTP_STATUS";
