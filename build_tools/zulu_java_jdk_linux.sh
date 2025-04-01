@@ -1,5 +1,5 @@
 #-----------------------------------------------------------------------------------------------
-#  Copy Azul Zulu Builds of OpenJDK to Linux host form Nexus
+#  Copy Azul Zulu Builds of OpenJDK to Linux host from Nexus
 # 
 #
 #  Run this script on a new linux system is to run the following command. You can pass arguments to the shell using the -s option:
