@@ -59,6 +59,10 @@ if [[ "$task" =~ java_8|all ]]; then
    tar -tf $JAVA_INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1 > $JAVA_INSTALL_PATH/java_version
 
    rm $JAVA_INSTALL_PATH/java_jdk.tar.gz
+
+   ## Set an env to this for ref
+   echo "export JAVA_HOME_8=${JAVA_INSTALL_PATH}/bin" | sudo tee /etc/profile.d/java_home_8_env.sh > /dev/null
+   
    echo "  Done installing Java 8 at $JAVA_INSTALL_PATH"
 else
     echo "  Not set to install this Java version.  Skipping this step."
@@ -76,7 +80,11 @@ if [[ "$task" =~ java_11|all ]]; then
    tar -tf $JAVA_INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1 > $JAVA_INSTALL_PATH/java_version
 
    rm $JAVA_INSTALL_PATH/java_jdk.tar.gz
-   echo "  Done installing Java 8 at $JAVA_INSTALL_PATH"
+   
+   ## Set an env to this for ref
+   echo "export JAVA_HOME_11=${JAVA_INSTALL_PATH}/bin" | sudo tee /etc/profile.d/java_home_11_env.sh > /dev/null
+   
+   echo "  Done installing Java 11 at $JAVA_INSTALL_PATH"
 else
     echo "  Not set to install this Java version.  Skipping this step."
 fi
@@ -92,7 +100,11 @@ if [[ "$task" =~ java_17|all ]]; then
    tar -tf $JAVA_INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1 > $JAVA_INSTALL_PATH/java_version
 
    rm $JAVA_INSTALL_PATH/java_jdk.tar.gz
-   echo "  Done installing Java 8 at $JAVA_INSTALL_PATH"
+
+   ## Set an env to this for ref
+   echo "export JAVA_HOME_17=${JAVA_INSTALL_PATH}/bin" | sudo tee /etc/profile.d/java_home_17_env.sh > /dev/null
+   
+   echo "  Done installing Java 17 at $JAVA_INSTALL_PATH"
 else
     echo "  Not set to install this Java version.  Skipping this step."
 fi
@@ -109,7 +121,11 @@ if [[ "$task" =~ java_21|all ]]; then
    tar -tf $JAVA_INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1 > $JAVA_INSTALL_PATH/java_version
 
    rm $JAVA_INSTALL_PATH/java_jdk.tar.gz
-   echo "  Done installing Java 8 at $JAVA_INSTALL_PATH"
+
+   ## Set an env to this for ref
+   echo "export JAVA_HOME_21=${JAVA_INSTALL_PATH}/bin" | sudo tee /etc/profile.d/java_home_21_env.sh > /dev/null
+   
+   echo "  Done installing Java 21 at $JAVA_INSTALL_PATH"
 else
     echo "  Not set to install this Java version.  Skipping this step."
 fi
