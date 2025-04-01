@@ -13,9 +13,7 @@ JAVA_11_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-p
 JAVA_17_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-prod-hosted/scrm/build_tools/java_jdk/zulu/zulu17.56.15-ca-jdk17.0.14-linux_x64.tar.gz'
 JAVA_21_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-prod-hosted/scrm/build_tools/java_jdk/zulu/zulu21.40.17-ca-jdk21.0.6-linux_x64.tar.gz'
 
-
 INSTALL_PATH='/usr/lib/jvm/zulu'
-
 
 # check if command line argument is empty or not present
 if [ -z $1 ]; then
@@ -45,7 +43,6 @@ download_nexus_file() {
         exit 1
     fi
 }
-
 
 
 echo "--- Install Java 8   -----------------------------"
