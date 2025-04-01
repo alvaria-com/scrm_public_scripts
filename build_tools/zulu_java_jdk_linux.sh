@@ -52,8 +52,8 @@ echo "--- Install Java 8   -----------------------------"
 if [[ "$task" =~ java_8|all ]]; then
    mkdir -p $INSTALL_PATH/jdk_8/
    download_nexus_file  "$JAVA_08_NEXUS_FILE"  "$INSTALL_PATH/jdk_8/java_jdk.tar.gz"
-   tar -xzvf $INSTALL_PATH/jdk_8/java_jdk.tar.gz  --strip-components=1 -C $INSTALL_PATH/jdk_8
-   rm $INSTALL_PATH/jdk_8/java_jdk.tar.gz
+   # tar -xzvf $INSTALL_PATH/jdk_8/java_jdk.tar.gz  --strip-components=2 -C $INSTALL_PATH/jdk_8
+   # rm $INSTALL_PATH/jdk_8/java_jdk.tar.gz
    echo "  Done installing Java 8 at $INSTALL_PATH/jdk_8"
 else
     echo "  Not set to install this Java version.  Skipping this step."
