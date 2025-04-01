@@ -14,11 +14,6 @@ TEMP_PATH='/tmp'
 INSTALL_PATH='/opt/fortify/sca_client'
 
 
-echo "--------------------------------------------------------"
-echo "- Start of script and is doing task '$task'"
-echo "--------------------------------------------------------"
-echo " "
-
 # check if command line argument is empty or not present
 if [ -z $1 ]; then
    echo "Info: No task was listed, default to 'download'"
@@ -27,6 +22,10 @@ else
    task="$1"
 fi
 
+echo "--------------------------------------------------------"
+echo "- Start of script and is doing task '$task'"
+echo "--------------------------------------------------------"
+echo " "
 
 ### Download Fortify client files
 echo "Download Fortify client files for Linux OS..."
