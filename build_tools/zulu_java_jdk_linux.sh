@@ -50,11 +50,33 @@ download_nexus_file() {
 
 echo "--- Install Java 8   -----------------------------"
 if [[ "$task" =~ java_8|all ]]; then
-   mkdir -p $INSTALL_PATH/jdk_8/
-   download_nexus_file  "$JAVA_08_NEXUS_FILE"  "$INSTALL_PATH/jdk_8/java_jdk.tar.gz"
-   # tar -xzvf $INSTALL_PATH/jdk_8/java_jdk.tar.gz  --strip-components=2 -C $INSTALL_PATH/jdk_8
-   # rm $INSTALL_PATH/jdk_8/java_jdk.tar.gz
-   echo "  Done installing Java 8 at $INSTALL_PATH/jdk_8"
+   JAVA_INSTALL_PATH=$INSTALL_PATH/jdk_8
+   mkdir -p $JAVA_INSTALL_PATH
+   download_nexus_file  "$JAVA_08_NEXUS_FILE"  "$JAVA_INSTALL_PATH/java_jdk.tar.gz"
+   tar -xzvf $JAVA_INSTALL_PATH/java_jdk.tar.gz  --strip-components=1 -C $JAVA_INSTALL_PATH
+
+   ## Let create a file to show what the full version of this java is:
+   tar -tf $JAVA_INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1 > $JAVA_INSTALL_PATH/java_version
+
+   rm $JAVA_INSTALL_PATH/java_jdk.tar.gz
+   echo "  Done installing Java 8 at $JAVA_INSTALL_PATH"
+else
+    echo "  Not set to install this Java version.  Skipping this step."
+fi
+
+
+echo "--- Install Java 11   ----------------------------"
+if [[ "$task" =~ java_8|all ]]; then
+   JAVA_INSTALL_PATH=$INSTALL_PATH/jdk_11
+   mkdir -p $JAVA_INSTALL_PATH
+   download_nexus_file  "$JAVA_11_NEXUS_FILE"  "$JAVA_INSTALL_PATH/java_jdk.tar.gz"
+   tar -xzvf $JAVA_INSTALL_PATH/java_jdk.tar.gz  --strip-components=1 -C $JAVA_INSTALL_PATH
+
+   ## Let create a file to show what the full version of this java is:
+   tar -tf $JAVA_INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1 > $JAVA_INSTALL_PATH/java_version
+
+   rm $JAVA_INSTALL_PATH/java_jdk.tar.gz
+   echo "  Done installing Java 8 at $JAVA_INSTALL_PATH"
 else
     echo "  Not set to install this Java version.  Skipping this step."
 fi
