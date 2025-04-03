@@ -28,7 +28,7 @@ echo "--------------------------------------------------------"
 echo " "
 
 ### Create user tmp if one not exists
-mkdir -p ~/tmp
+mkdir -p $TEMP_PATH
 
 ### Download Fortify client files
 echo "Download Fortify client files for Linux OS..."
