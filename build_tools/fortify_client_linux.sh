@@ -12,7 +12,7 @@ FORTIFY_FILE_URL='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-pro
 FORTIFY_LICENSE_FILE_URL='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-prod-hosted/scrm/build_tools/fortify/license/fortify.license'
 
 INSTALL_PATH='/opt/fortify/sca_client'
-TEMP_PATH='~/tmp'
+TEMP_PATH='/SCRM/tmp'
 
 # check if command line argument is empty or not present
 if [ -z $1 ]; then
@@ -28,7 +28,7 @@ echo "--------------------------------------------------------"
 echo " "
 
 ### Create user tmp if one not exists
-mkdir -P $TEMP_PATH
+mkdir -p $TEMP_PATH
 
 ### Download Fortify client files
 echo "Download Fortify client files for Linux OS..."
