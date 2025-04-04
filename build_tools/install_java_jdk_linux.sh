@@ -16,7 +16,7 @@ JAVA_21_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-p
 
 JAVA_05_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-iq-hosted/com/alvaria/thirdparty/java/jdk/java/1.5/java-1.5.tar.gz'
 
-INSTALL_PATH='/usr/lib/jvm/jdks'
+INSTALL_PATH='/usr/lib/java/jdk'
 
 # check if command line argument is empty or not present
 if [ -z $1 ]; then
