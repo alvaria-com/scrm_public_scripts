@@ -22,10 +22,9 @@ else
    task="$1"
 fi
 
-echo "--------------------------------------------------------"
-echo "- Start of script and is doing task '$task'"
-echo "--------------------------------------------------------"
-echo " "
+echo ' '
+echo "-- Start of Fortify client install and is doing task: '$task'"
+echo ' '
 
 ### Create user tmp if one not exists
 mkdir -p $TEMP_PATH

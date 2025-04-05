@@ -27,7 +27,7 @@ else
 fi
 
 echo ' '
-echo "-- Start of fortify client install and is doing task '$task'"
+echo "-- Start of Java JDKs install and is doing task: '$task'"
 echo ' '
 
 ## Basic function to download file from Nexus using curl and some error check.
