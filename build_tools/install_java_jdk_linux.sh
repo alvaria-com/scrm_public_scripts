@@ -49,7 +49,7 @@ download_nexus_file() {
 
 
 echo "--- Install Java 5   -----------------------------"
-if [[ "$task" =~ java_5 ]]; then
+if [[ "$task" =~ java_5|all ]]; then
    JAVA_INSTALL_PATH=$INSTALL_PATH/jdk_5
    mkdir -p $JAVA_INSTALL_PATH
    download_nexus_file  "$JAVA_05_NEXUS_FILE"  "$JAVA_INSTALL_PATH/java_jdk.tar.gz"
