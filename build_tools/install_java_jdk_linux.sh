@@ -26,10 +26,9 @@ else
    task="$1"
 fi
 
-echo "--------------------------------------------------------"
-echo "- Start of script and is doing task '$task'"
-echo "--------------------------------------------------------"
-echo " "
+echo ' '
+echo "-- Start of fortify client install and is doing task '$task'"
+echo ' '
 
 ## Basic function to download file from Nexus using curl and some error check.
 download_nexus_file() {
