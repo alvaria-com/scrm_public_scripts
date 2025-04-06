@@ -112,7 +112,7 @@ fi
 
 echo "--- Install Java 17   ----------------------------"
 if [[ "$task" =~ java_17|all ]]; then
-   JAVA_INSTALL_PATH=$INSTALL_PATH/jdk_11
+   JAVA_INSTALL_PATH=$INSTALL_PATH/jdk_17
    mkdir -p $JAVA_INSTALL_PATH
    download_nexus_file  "$JAVA_17_NEXUS_FILE"  "$JAVA_INSTALL_PATH/java_jdk.tar.gz"
    tar -xzvf $JAVA_INSTALL_PATH/java_jdk.tar.gz  --strip-components=1 -C $JAVA_INSTALL_PATH
@@ -133,7 +133,7 @@ fi
 
 echo "--- Install Java 21   ----------------------------"
 if [[ "$task" =~ java_21|all ]]; then
-   JAVA_INSTALL_PATH=$INSTALL_PATH/jdk_11
+   JAVA_INSTALL_PATH=$INSTALL_PATH/jdk_21
    mkdir -p $JAVA_INSTALL_PATH
    download_nexus_file  "$JAVA_21_NEXUS_FILE"  "$JAVA_INSTALL_PATH/java_jdk.tar.gz"
    tar -xzvf $JAVA_INSTALL_PATH/java_jdk.tar.gz  --strip-components=1 -C $JAVA_INSTALL_PATH
