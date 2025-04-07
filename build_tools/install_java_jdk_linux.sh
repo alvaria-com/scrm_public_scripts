@@ -76,7 +76,9 @@ echo "--- Install Java 8   -----------------------------"
     if [[ "$task" =~ java_8|all ]]; then
     JAVA_VER='08'
 
-    download_nexus_file "${!JAVA_${JAVA_VER}_NEXUS_FILE}"  "$INSTALL_PATH/java_jdk.tar.gz"
+    NEXUS_FILE_VAR="JAVA_${JAVA_VER}_NEXUS_FILE"
+    download_nexus_file "$(eval echo \$$NEXUS_FILE_VAR)"  "$INSTALL_PATH/java_jdk.tar.gz"
+
     
     tar -xzvf $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
     ## Let create a file to show what the full version of this java is:
@@ -96,8 +98,9 @@ echo "--- Install Java 11   ----------------------------"
     if [[ "$task" =~ java_11|all ]]; then
     JAVA_VER='11'
 
-    download_nexus_file "${!JAVA_${JAVA_VER}_NEXUS_FILE}"  "$INSTALL_PATH/java_jdk.tar.gz"
-    
+    NEXUS_FILE_VAR="JAVA_${JAVA_VER}_NEXUS_FILE"
+    download_nexus_file "$(eval echo \$$NEXUS_FILE_VAR)"  "$INSTALL_PATH/java_jdk.tar.gz"
+
     tar -xzvf $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
     ## Let create a file to show what the full version of this java is:
     JAVA_VERSION_FOLDER=$(tar -tf $INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
@@ -116,8 +119,9 @@ echo "--- Install Java 17   ----------------------------"
     if [[ "$task" =~ java_17|all ]]; then
     JAVA_VER='17'
 
-    download_nexus_file "${!JAVA_${JAVA_VER}_NEXUS_FILE}"  "$INSTALL_PATH/java_jdk.tar.gz"
-    
+    NEXUS_FILE_VAR="JAVA_${JAVA_VER}_NEXUS_FILE"
+    download_nexus_file "$(eval echo \$$NEXUS_FILE_VAR)"  "$INSTALL_PATH/java_jdk.tar.gz"
+
     tar -xzvf $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
     ## Let create a file to show what the full version of this java is:
     JAVA_VERSION_FOLDER=$(tar -tf $INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
@@ -136,7 +140,8 @@ echo "--- Install Java 21   ----------------------------"
     if [[ "$task" =~ java_21|all ]]; then
     JAVA_VER='21'
 
-    download_nexus_file "${!JAVA_${JAVA_VER}_NEXUS_FILE}"  "$INSTALL_PATH/java_jdk.tar.gz"
+    NEXUS_FILE_VAR="JAVA_${JAVA_VER}_NEXUS_FILE"
+    download_nexus_file "$(eval echo \$$NEXUS_FILE_VAR)"  "$INSTALL_PATH/java_jdk.tar.gz"
 
     tar -xzvf $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
     ## Let create a file to show what the full version of this java is:
