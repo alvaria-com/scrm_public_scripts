@@ -55,7 +55,7 @@ echo "--- Install Java 5   -----------------------------"
     JAVA_INSTALL_PATH=$INSTALL_PATH/jdk_5
     mkdir -p $JAVA_INSTALL_PATH
     download_nexus_file  "$JAVA_05_NEXUS_FILE"  "$JAVA_INSTALL_PATH/java_jdk.tar.gz"
-    tar -xzvf $JAVA_INSTALL_PATH/java_jdk.tar.gz  --strip-components=1 -C $JAVA_INSTALL_PATH
+    tar -xzvfq $JAVA_INSTALL_PATH/java_jdk.tar.gz  --strip-components=1 -C $JAVA_INSTALL_PATH
 
     ## Let create a file to show what the full version of this java is:
     tar -tf $JAVA_INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1 > $JAVA_INSTALL_PATH/java_version
@@ -80,7 +80,7 @@ echo "--- Install Java 8   -----------------------------"
     download_nexus_file "$(eval echo \$$NEXUS_FILE_VAR)"  "$INSTALL_PATH/java_jdk.tar.gz"
 
     
-    tar -xzvf $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
+    tar -xzvfq $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
     ## Let create a file to show what the full version of this java is:
     JAVA_VERSION_FOLDER=$(tar -tf $INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
     rm $INSTALL_PATH/java_jdk.tar.gz
@@ -101,7 +101,7 @@ echo "--- Install Java 11   ----------------------------"
     NEXUS_FILE_VAR="JAVA_${JAVA_VER}_NEXUS_FILE"
     download_nexus_file "$(eval echo \$$NEXUS_FILE_VAR)"  "$INSTALL_PATH/java_jdk.tar.gz"
 
-    tar -xzvf $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
+    tar -xzvfq $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
     ## Let create a file to show what the full version of this java is:
     JAVA_VERSION_FOLDER=$(tar -tf $INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
     rm $INSTALL_PATH/java_jdk.tar.gz
@@ -122,7 +122,7 @@ echo "--- Install Java 17   ----------------------------"
     NEXUS_FILE_VAR="JAVA_${JAVA_VER}_NEXUS_FILE"
     download_nexus_file "$(eval echo \$$NEXUS_FILE_VAR)"  "$INSTALL_PATH/java_jdk.tar.gz"
 
-    tar -xzvf $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
+    tar -xzvfq $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
     ## Let create a file to show what the full version of this java is:
     JAVA_VERSION_FOLDER=$(tar -tf $INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
     rm $INSTALL_PATH/java_jdk.tar.gz
@@ -143,7 +143,7 @@ echo "--- Install Java 21   ----------------------------"
     NEXUS_FILE_VAR="JAVA_${JAVA_VER}_NEXUS_FILE"
     download_nexus_file "$(eval echo \$$NEXUS_FILE_VAR)"  "$INSTALL_PATH/java_jdk.tar.gz"
 
-    tar -xzvf $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
+    tar -xzvfq $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
     ## Let create a file to show what the full version of this java is:
     JAVA_VERSION_FOLDER=$(tar -tf $INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
     rm $INSTALL_PATH/java_jdk.tar.gz
