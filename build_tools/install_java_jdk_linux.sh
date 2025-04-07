@@ -55,7 +55,7 @@ echo "--- Install Java 5   -----------------------------"
     JAVA_INSTALL_PATH=$INSTALL_PATH/jdk_5
     mkdir -p $JAVA_INSTALL_PATH
     download_nexus_file  "$JAVA_05_NEXUS_FILE"  "$JAVA_INSTALL_PATH/java_jdk.tar.gz"
-    tar -xzvfq $JAVA_INSTALL_PATH/java_jdk.tar.gz  --strip-components=1 -C $JAVA_INSTALL_PATH
+    tar -xzf $JAVA_INSTALL_PATH/java_jdk.tar.gz  --strip-components=1 -C $JAVA_INSTALL_PATH
 
     ## Let create a file to show what the full version of this java is:
     tar -tf $JAVA_INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1 > $JAVA_INSTALL_PATH/java_version
