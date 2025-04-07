@@ -74,7 +74,7 @@ echo "--- Install Java 5   -----------------------------"
 
 echo "--- Install Java 8   -----------------------------"
     if [[ "$task" =~ java_8|all ]]; then
-    JAVA_VER='8'
+    JAVA_VER='08'
 
     download_nexus_file  "$JAVA_${JAVA_VER}_NEXUS_FILE"  "$INSTALL_PATH/java_jdk.tar.gz"
     
