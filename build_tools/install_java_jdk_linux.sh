@@ -13,7 +13,6 @@ JAVA_08_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-p
 JAVA_11_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-prod-hosted/scrm/build_tools/java_jdk/zulu/zulu11.78.15-ca-jdk11.0.26-linux_x64.tar.gz'
 JAVA_17_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-prod-hosted/scrm/build_tools/java_jdk/zulu/zulu17.56.15-ca-jdk17.0.14-linux_x64.tar.gz'
 JAVA_21_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-prod-hosted/scrm/build_tools/java_jdk/zulu/zulu21.40.17-ca-jdk21.0.6-linux_x64.tar.gz'
-
 JAVA_05_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-iq-hosted/com/alvaria/thirdparty/java/jdk/java/1.5/java-1.5.tar.gz'
 
 INSTALL_PATH='/usr/lib/java/jdk'
@@ -29,6 +28,10 @@ fi
 echo ' '
 echo "-- Start of Java JDKs install and is doing task: '$task'"
 echo ' '
+
+
+### Create the main folder that all java jdks will live in.
+sudo mkdir -p $INSTALL_PATH
 
 ## Basic function to download file from Nexus using curl and some error check.
 download_nexus_file() {
@@ -71,20 +74,19 @@ fi
 
 echo "--- Install Java 8   -----------------------------"
 if [[ "$task" =~ java_8|all ]]; then
-   JAVA_INSTALL_PATH=$INSTALL_PATH/jdk_8
-   mkdir -p $JAVA_INSTALL_PATH
-   download_nexus_file  "$JAVA_08_NEXUS_FILE"  "$JAVA_INSTALL_PATH/java_jdk.tar.gz"
-   tar -xzvf $JAVA_INSTALL_PATH/java_jdk.tar.gz  --strip-components=1 -C $JAVA_INSTALL_PATH
+   JAVA_VER='8'
 
+   download_nexus_file  "$JAVA_${JAVA_VER}_NEXUS_FILE"  "$INSTALL_PATH/java_jdk.tar.gz"
+  
+   tar -xzvf $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
    ## Let create a file to show what the full version of this java is:
-   tar -tf $JAVA_INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1 > $JAVA_INSTALL_PATH/java_version
-
-   rm $JAVA_INSTALL_PATH/java_jdk.tar.gz
+   JAVA_VERSION_FOLDER=$(tar -tf $INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
+   rm $INSTALL_PATH/java_jdk.tar.gz
 
    ## Set an env to this for ref
-   echo "export JAVA_HOME_8=${JAVA_INSTALL_PATH}/bin" | sudo tee /etc/profile.d/java_home_8_env.sh > /dev/null
+   echo "export JAVA_HOME_${JAVA_VER}=${INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh > /dev/null
    
-   echo "  Done installing Java 8 at $JAVA_INSTALL_PATH"
+   echo "  Done installing Java $JAVA_VER at ${INSTALL_PATH}/${JAVA_VERSION_FOLDER}"
 else
     echo "  Not set to install this Java version.  Skipping this step."
 fi
@@ -150,3 +152,4 @@ if [[ "$task" =~ java_21|all ]]; then
 else
     echo "  Not set to install this Java version.  Skipping this step."
 fi
+
