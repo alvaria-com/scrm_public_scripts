@@ -63,13 +63,14 @@ echo "--- Install Java 5   -----------------------------"
     rm $JAVA_INSTALL_PATH/java_jdk.tar.gz
 
     ## Set an env to this for ref
-    echo "export JAVA_HOME_5=${JAVA_INSTALL_PATH}/bin" | sudo tee /etc/profile.d/java_home_5_env.sh > /dev/null
+    echo "export JAVA_HOME_5=${JAVA_INSTALL_PATH}" | sudo tee /etc/profile.d/java_home_5_env.sh
+    echo "Created env: JAVA_HOME_5=${JAVA_INSTALL_PATH} for next bootup."
     
-    echo "  Done installing Java 5 at $JAVA_INSTALL_PATH"
+    echo "Done installing Java 1.5 at ${INSTALL_PATH}/${JAVA_VERSION_FOLDER}"
     else
-        echo "  Not set to install this Java version.  Skipping this step."
+        echo "** Not set to install this Java version.  Skipping this step."
     fi
-
+    echo ''
 
 
 echo "--- Install Java 8   -----------------------------"
@@ -87,11 +88,13 @@ echo "--- Install Java 8   -----------------------------"
 
     ## Set an env to this for ref
     echo "export JAVA_HOME_${JAVA_VER}=${INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh > /dev/null
-    
-    echo "  Done installing Java $JAVA_VER at ${INSTALL_PATH}/${JAVA_VERSION_FOLDER}"
+    echo "Created env: JAVA_HOME_${JAVA_VER}=${INSTALL_PATH}/${JAVA_VERSION_FOLDER} for next bootup."
+
+    echo "Done installing Java $JAVA_VER at ${INSTALL_PATH}/${JAVA_VERSION_FOLDER}"
     else
-        echo "  Not set to install this Java version.  Skipping this step."
+        echo "** Not set to install this Java version.  Skipping this step."
     fi
+    echo ''
 
 
 echo "--- Install Java 11   ----------------------------"
@@ -108,11 +111,13 @@ echo "--- Install Java 11   ----------------------------"
 
     ## Set an env to this for ref
     echo "export JAVA_HOME_${JAVA_VER}=${INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh > /dev/null
-    
-    echo "  Done installing Java $JAVA_VER at ${INSTALL_PATH}/${JAVA_VERSION_FOLDER}"
+    echo "Created env: JAVA_HOME_${JAVA_VER}=${INSTALL_PATH}/${JAVA_VERSION_FOLDER} for next bootup."
+
+    echo "Done installing Java $JAVA_VER at ${INSTALL_PATH}/${JAVA_VERSION_FOLDER}"
     else
-        echo "  Not set to install this Java version.  Skipping this step."
+        echo "** Not set to install this Java version.  Skipping this step."
     fi
+    echo ''
 
 
 echo "--- Install Java 17   ----------------------------"
@@ -129,12 +134,13 @@ echo "--- Install Java 17   ----------------------------"
 
     ## Set an env to this for ref
     echo "export JAVA_HOME_${JAVA_VER}=${INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh > /dev/null
-    
-    echo "  Done installing Java $JAVA_VER at ${INSTALL_PATH}/${JAVA_VERSION_FOLDER}"
-    else
-        echo "  Not set to install this Java version.  Skipping this step."
-    fi
+    echo "Created env: JAVA_HOME_${JAVA_VER}=${INSTALL_PATH}/${JAVA_VERSION_FOLDER} for next bootup."
 
+    echo "Done installing Java $JAVA_VER at ${INSTALL_PATH}/${JAVA_VERSION_FOLDER}"
+    else
+        echo "** Not set to install this Java version.  Skipping this step."
+    fi
+    echo ''
 
 echo "--- Install Java 21   ----------------------------"
     if [[ "$task" =~ java_21|all ]]; then
@@ -150,8 +156,10 @@ echo "--- Install Java 21   ----------------------------"
 
     ## Set an env to this for ref
     echo "export JAVA_HOME_${JAVA_VER}=${INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh > /dev/null
-    
-    echo "  Done installing Java $JAVA_VER at ${INSTALL_PATH}/${JAVA_VERSION_FOLDER}"
+    echo "Created env: JAVA_HOME_${JAVA_VER}=${INSTALL_PATH}/${JAVA_VERSION_FOLDER} for next bootup."
+
+    echo "Done installing Java $JAVA_VER at ${INSTALL_PATH}/${JAVA_VERSION_FOLDER}"
     else
-        echo "  Not set to install this Java version.  Skipping this step."
+        echo "** Not set to install this Java version.  Skipping this step."
     fi
+    echo ''
