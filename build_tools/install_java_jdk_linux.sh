@@ -51,105 +51,102 @@ download_nexus_file() {
 
 
 echo "--- Install Java 5   -----------------------------"
-if [[ "$task" =~ java_5|all ]]; then
-   JAVA_INSTALL_PATH=$INSTALL_PATH/jdk_5
-   mkdir -p $JAVA_INSTALL_PATH
-   download_nexus_file  "$JAVA_05_NEXUS_FILE"  "$JAVA_INSTALL_PATH/java_jdk.tar.gz"
-   tar -xzvf $JAVA_INSTALL_PATH/java_jdk.tar.gz  --strip-components=1 -C $JAVA_INSTALL_PATH
+    if [[ "$task" =~ java_5|all ]]; then
+    JAVA_INSTALL_PATH=$INSTALL_PATH/jdk_5
+    mkdir -p $JAVA_INSTALL_PATH
+    download_nexus_file  "$JAVA_05_NEXUS_FILE"  "$JAVA_INSTALL_PATH/java_jdk.tar.gz"
+    tar -xzvf $JAVA_INSTALL_PATH/java_jdk.tar.gz  --strip-components=1 -C $JAVA_INSTALL_PATH
 
-   ## Let create a file to show what the full version of this java is:
-   tar -tf $JAVA_INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1 > $JAVA_INSTALL_PATH/java_version
+    ## Let create a file to show what the full version of this java is:
+    tar -tf $JAVA_INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1 > $JAVA_INSTALL_PATH/java_version
 
-   rm $JAVA_INSTALL_PATH/java_jdk.tar.gz
+    rm $JAVA_INSTALL_PATH/java_jdk.tar.gz
 
-   ## Set an env to this for ref
-   echo "export JAVA_HOME_5=${JAVA_INSTALL_PATH}/bin" | sudo tee /etc/profile.d/java_home_5_env.sh > /dev/null
-   
-   echo "  Done installing Java 5 at $JAVA_INSTALL_PATH"
-else
-    echo "  Not set to install this Java version.  Skipping this step."
-fi
+    ## Set an env to this for ref
+    echo "export JAVA_HOME_5=${JAVA_INSTALL_PATH}/bin" | sudo tee /etc/profile.d/java_home_5_env.sh > /dev/null
+    
+    echo "  Done installing Java 5 at $JAVA_INSTALL_PATH"
+    else
+        echo "  Not set to install this Java version.  Skipping this step."
+    fi
 
 
 
 echo "--- Install Java 8   -----------------------------"
-if [[ "$task" =~ java_8|all ]]; then
-   JAVA_VER='8'
+    if [[ "$task" =~ java_8|all ]]; then
+    JAVA_VER='8'
 
-   download_nexus_file  "$JAVA_${JAVA_VER}_NEXUS_FILE"  "$INSTALL_PATH/java_jdk.tar.gz"
-  
-   tar -xzvf $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
-   ## Let create a file to show what the full version of this java is:
-   JAVA_VERSION_FOLDER=$(tar -tf $INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
-   rm $INSTALL_PATH/java_jdk.tar.gz
+    download_nexus_file  "$JAVA_${JAVA_VER}_NEXUS_FILE"  "$INSTALL_PATH/java_jdk.tar.gz"
+    
+    tar -xzvf $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
+    ## Let create a file to show what the full version of this java is:
+    JAVA_VERSION_FOLDER=$(tar -tf $INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
+    rm $INSTALL_PATH/java_jdk.tar.gz
 
-   ## Set an env to this for ref
-   echo "export JAVA_HOME_${JAVA_VER}=${INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh > /dev/null
-   
-   echo "  Done installing Java $JAVA_VER at ${INSTALL_PATH}/${JAVA_VERSION_FOLDER}"
-else
-    echo "  Not set to install this Java version.  Skipping this step."
-fi
+    ## Set an env to this for ref
+    echo "export JAVA_HOME_${JAVA_VER}=${INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh > /dev/null
+    
+    echo "  Done installing Java $JAVA_VER at ${INSTALL_PATH}/${JAVA_VERSION_FOLDER}"
+    else
+        echo "  Not set to install this Java version.  Skipping this step."
+    fi
 
 
 echo "--- Install Java 11   ----------------------------"
-if [[ "$task" =~ java_11|all ]]; then
-   JAVA_INSTALL_PATH=$INSTALL_PATH/jdk_11
-   mkdir -p $JAVA_INSTALL_PATH
-   download_nexus_file  "$JAVA_11_NEXUS_FILE"  "$JAVA_INSTALL_PATH/java_jdk.tar.gz"
-   tar -xzvf $JAVA_INSTALL_PATH/java_jdk.tar.gz  --strip-components=1 -C $JAVA_INSTALL_PATH
+    if [[ "$task" =~ java_11|all ]]; then
+    JAVA_VER='11'
 
-   ## Let create a file to show what the full version of this java is:
-   tar -tf $JAVA_INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1 > $JAVA_INSTALL_PATH/java_version
+    download_nexus_file  "$JAVA_${JAVA_VER}_NEXUS_FILE"  "$INSTALL_PATH/java_jdk.tar.gz"
+    
+    tar -xzvf $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
+    ## Let create a file to show what the full version of this java is:
+    JAVA_VERSION_FOLDER=$(tar -tf $INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
+    rm $INSTALL_PATH/java_jdk.tar.gz
 
-   rm $JAVA_INSTALL_PATH/java_jdk.tar.gz
-   
-   ## Set an env to this for ref
-   echo "export JAVA_HOME_11=${JAVA_INSTALL_PATH}/bin" | sudo tee /etc/profile.d/java_home_11_env.sh > /dev/null
-   
-   echo "  Done installing Java 11 at $JAVA_INSTALL_PATH"
-else
-    echo "  Not set to install this Java version.  Skipping this step."
-fi
+    ## Set an env to this for ref
+    echo "export JAVA_HOME_${JAVA_VER}=${INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh > /dev/null
+    
+    echo "  Done installing Java $JAVA_VER at ${INSTALL_PATH}/${JAVA_VERSION_FOLDER}"
+    else
+        echo "  Not set to install this Java version.  Skipping this step."
+    fi
+
 
 echo "--- Install Java 17   ----------------------------"
-if [[ "$task" =~ java_17|all ]]; then
-   JAVA_INSTALL_PATH=$INSTALL_PATH/jdk_17
-   mkdir -p $JAVA_INSTALL_PATH
-   download_nexus_file  "$JAVA_17_NEXUS_FILE"  "$JAVA_INSTALL_PATH/java_jdk.tar.gz"
-   tar -xzvf $JAVA_INSTALL_PATH/java_jdk.tar.gz  --strip-components=1 -C $JAVA_INSTALL_PATH
+    if [[ "$task" =~ java_17|all ]]; then
+    JAVA_VER='17'
 
-   ## Let create a file to show what the full version of this java is:
-   tar -tf $JAVA_INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1 > $JAVA_INSTALL_PATH/java_version
+    download_nexus_file  "$JAVA_${JAVA_VER}_NEXUS_FILE"  "$INSTALL_PATH/java_jdk.tar.gz"
+    
+    tar -xzvf $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
+    ## Let create a file to show what the full version of this java is:
+    JAVA_VERSION_FOLDER=$(tar -tf $INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
+    rm $INSTALL_PATH/java_jdk.tar.gz
 
-   rm $JAVA_INSTALL_PATH/java_jdk.tar.gz
-
-   ## Set an env to this for ref
-   echo "export JAVA_HOME_17=${JAVA_INSTALL_PATH}/bin" | sudo tee /etc/profile.d/java_home_17_env.sh > /dev/null
-   
-   echo "  Done installing Java 17 at $JAVA_INSTALL_PATH"
-else
-    echo "  Not set to install this Java version.  Skipping this step."
-fi
+    ## Set an env to this for ref
+    echo "export JAVA_HOME_${JAVA_VER}=${INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh > /dev/null
+    
+    echo "  Done installing Java $JAVA_VER at ${INSTALL_PATH}/${JAVA_VERSION_FOLDER}"
+    else
+        echo "  Not set to install this Java version.  Skipping this step."
+    fi
 
 
 echo "--- Install Java 21   ----------------------------"
-if [[ "$task" =~ java_21|all ]]; then
-   JAVA_INSTALL_PATH=$INSTALL_PATH/jdk_21
-   mkdir -p $JAVA_INSTALL_PATH
-   download_nexus_file  "$JAVA_21_NEXUS_FILE"  "$JAVA_INSTALL_PATH/java_jdk.tar.gz"
-   tar -xzvf $JAVA_INSTALL_PATH/java_jdk.tar.gz  --strip-components=1 -C $JAVA_INSTALL_PATH
+    if [[ "$task" =~ java_21|all ]]; then
+    JAVA_VER='21'
 
-   ## Let create a file to show what the full version of this java is:
-   tar -tf $JAVA_INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1 > $JAVA_INSTALL_PATH/java_version
+    download_nexus_file  "$JAVA_${JAVA_VER}_NEXUS_FILE"  "$INSTALL_PATH/java_jdk.tar.gz"
+    
+    tar -xzvf $INSTALL_PATH/java_jdk.tar.gz -C $INSTALL_PATH
+    ## Let create a file to show what the full version of this java is:
+    JAVA_VERSION_FOLDER=$(tar -tf $INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
+    rm $INSTALL_PATH/java_jdk.tar.gz
 
-   rm $JAVA_INSTALL_PATH/java_jdk.tar.gz
-
-   ## Set an env to this for ref
-   echo "export JAVA_HOME_21=${JAVA_INSTALL_PATH}/bin" | sudo tee /etc/profile.d/java_home_21_env.sh > /dev/null
-   
-   echo "  Done installing Java 21 at $JAVA_INSTALL_PATH"
-else
-    echo "  Not set to install this Java version.  Skipping this step."
-fi
-
+    ## Set an env to this for ref
+    echo "export JAVA_HOME_${JAVA_VER}=${INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh > /dev/null
+    
+    echo "  Done installing Java $JAVA_VER at ${INSTALL_PATH}/${JAVA_VERSION_FOLDER}"
+    else
+        echo "  Not set to install this Java version.  Skipping this step."
+    fi
