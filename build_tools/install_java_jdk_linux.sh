@@ -53,9 +53,10 @@ download_nexus_file() {
     fi
 }
 
-echo ''
-echo "--- Install Java 5   -----------------------------"
+
+
 if [[ "$task" =~ java_5|all ]]; then
+    printf "\n--- Install Java 5   -----------------------------"
     JAVA_JDK_INSTALL_PATH=$JDK_INSTALL_PATH/jdk_5
     mkdir -p $JAVA_JDK_INSTALL_PATH
     download_nexus_file  "$JAVA_05_NEXUS_FILE"  "$JAVA_JDK_INSTALL_PATH/java_jdk.tar.gz"
@@ -82,9 +83,9 @@ if [[ "$task" =~ java_5|all ]]; then
 fi
 
 
-echo ''
-echo "--- Install Java 8   -----------------------------"
+
 if [[ "$task" =~ java_8|all ]]; then
+    printf "\n--- Install Java 8   -----------------------------"
     JAVA_VER='08'
 
     NEXUS_FILE_VAR="JAVA_${JAVA_VER}_NEXUS_FILE"
@@ -112,9 +113,8 @@ if [[ "$task" =~ java_8|all ]]; then
 fi
 
 
-echo ''
-echo "--- Install Java 11   ----------------------------"
-    if [[ "$task" =~ java_11|all ]]; then
+if [[ "$task" =~ java_11|all ]]; then
+    printf "\n--- Install Java 11   ----------------------------"
     JAVA_VER='11'
 
     NEXUS_FILE_VAR="JAVA_${JAVA_VER}_NEXUS_FILE"
@@ -130,7 +130,7 @@ echo "--- Install Java 11   ----------------------------"
     echo "Created env: JAVA_HOME_${JAVA_VER}=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER} for next bootup."
     echo "If you want to use this version of JDK, export JAVA_HOME=\$JAVA_HOME_${JAVA_VER}"
 
-    if [[ "$task" == java_8 ]]; then
+    if [[ "$task" == java_11 ]]; then
         ### We just installing one thing so let set the path and env to use it.
         echo "export PATH=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER}/bin:\$PATH"  | sudo tee /etc/profile.d/java_home_env.sh
         echo "export JAVA_HOME=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_env.sh
@@ -141,9 +141,9 @@ echo "--- Install Java 11   ----------------------------"
 fi
 
 
-echo ''
-echo "--- Install Java 17   ----------------------------"
-    if [[ "$task" =~ java_17|all ]]; then
+
+if [[ "$task" =~ java_17|all ]]; then
+    printf "\n--- Install Java 17   ----------------------------"
     JAVA_VER='17'
 
     NEXUS_FILE_VAR="JAVA_${JAVA_VER}_NEXUS_FILE"
@@ -159,7 +159,7 @@ echo "--- Install Java 17   ----------------------------"
     echo "Created env: JAVA_HOME_${JAVA_VER}=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER} for next bootup."
     echo "If you want to use this version of JDK, export JAVA_HOME=\$JAVA_HOME_${JAVA_VER}"
 
-    if [[ "$task" == java_8 ]]; then
+    if [[ "$task" == java_17 ]]; then
         ### We just installing one thing so let set the path and env to use it.
         echo "export PATH=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER}/bin:\$PATH"  | sudo tee /etc/profile.d/java_home_env.sh
         echo "export JAVA_HOME=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_env.sh
@@ -170,9 +170,9 @@ echo "--- Install Java 17   ----------------------------"
 fi
 
 
-echo ''
-echo "--- Install Java 21   ----------------------------"
-    if [[ "$task" =~ java_21|all ]]; then
+
+if [[ "$task" =~ java_21|all ]]; then
+    printf "\n--- Install Java 21   ----------------------------"
     JAVA_VER='21'
 
     NEXUS_FILE_VAR="JAVA_${JAVA_VER}_NEXUS_FILE"
@@ -188,7 +188,7 @@ echo "--- Install Java 21   ----------------------------"
     echo "Created env: JAVA_HOME_${JAVA_VER}=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER} for next bootup."
     echo "If you want to use this version of JDK, export JAVA_HOME=\$JAVA_HOME_${JAVA_VER}"
 
-    if [[ "$task" == java_8 ]]; then
+    if [[ "$task" == java_21 ]]; then
         ### We just installing one thing so let set the path and env to use it.
         echo "export PATH=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER}/bin:\$PATH"  | sudo tee /etc/profile.d/java_home_env.sh
         echo "export JAVA_HOME=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_env.sh
@@ -199,9 +199,8 @@ echo "--- Install Java 21   ----------------------------"
 fi
 
 
-echo ''
-echo "--- Install ANT 1.10  ----------------------------"
 if [[ "$task" =~ ant|all ]]; then
+    printf "\n--- Install ANT 1.10  ----------------------------"
 
     download_nexus_file $ANT_110_NEXUS_FILE  $ANT_INSTALL_PATH/ant.tar.gz
     tar -xzf $ANT_INSTALL_PATH/ant.tar.gz -C $ANT_INSTALL_PATH
