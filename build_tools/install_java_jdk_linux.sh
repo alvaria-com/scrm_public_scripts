@@ -14,7 +14,7 @@ JAVA_17_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-p
 JAVA_21_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-prod-hosted/scrm/build_tools/java_jdk/zulu/zulu21.40.17-ca-jdk21.0.6-linux_x64.tar.gz'
 JAVA_05_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-iq-hosted/com/alvaria/thirdparty/java/jdk/java/1.5/java-1.5.tar.gz'
 
-ANT_10_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-prod-hosted/scrm/build_tools/java_ant/apache-ant-1.10.15-bin.tar.gz'
+ANT_110_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-prod-hosted/scrm/build_tools/java_ant/apache-ant-1.10.15-bin.tar.gz'
 ANT_IVY_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-prod-hosted/scrm/build_tools/java_ant/apache-ivy-2.5.3-bin.tar.gz'
 ANT_CONTRIB_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-prod-hosted/scrm/build_tools/java_ant/ant-contrib-1.0b3.jar'
 
@@ -179,7 +179,7 @@ echo "--- Install Java 21   ----------------------------"
 echo "--- Install ANT 1.10  ----------------------------"
     if [[ "$task" =~ ant|all ]]; then
 
-    download_nexus_file $ANT_NEXUS_FILE"  "$ANT_INSTALL_PATH/ant.tar.gz"
+    download_nexus_file $ANT_110_NEXUS_FILE  $ANT_INSTALL_PATH/ant.tar.gz
     tar -xzf $ANT_INSTALL_PATH/ant.tar.gz -C $ANT_INSTALL_PATH
     ANT_VERSION_FOLDER=$(tar -tf $ANT_INSTALL_PATH/ant.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
     rm $ANT_INSTALL_PATH/ant.tar.gz
@@ -189,11 +189,11 @@ echo "--- Install ANT 1.10  ----------------------------"
     echo "Created env: ANT_HOME=${ANT_INSTALL_PATH}/${ANT_VERSION_FOLDER} for next bootup."
 
     ### Download the ANT contrib jar right into ANT LIB folder
-    download_nexus_file $ANT_CONTRIB_NEXUS_FILE  $ANT_INSTALL_PATH/$ANT_VERSION_FOLDER/lib/ant.contrib.jar"
+    download_nexus_file $ANT_CONTRIB_NEXUS_FILE $ANT_INSTALL_PATH/$ANT_VERSION_FOLDER/lib/ant.contrib.jar
 
 
     ### Deal with IVY now
-    download_nexus_file $ANT_IVY_NEXUS_FILE  "$ANT_INSTALL_PATH/ivy.tar.gz"
+    download_nexus_file $ANT_IVY_NEXUS_FILE $ANT_INSTALL_PATH/ivy.tar.gz
     tar -xzf $ANT_INSTALL_PATH/ivy.tar.gz -C $ANT_INSTALL_PATH
     IVY_VERSION_FOLDER=$(tar -tf $ANT_INSTALL_PATH/ivy.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
     rm $ANT_INSTALL_PATH/ivy.tar.gz
