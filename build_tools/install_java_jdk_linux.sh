@@ -177,27 +177,38 @@ echo "--- Install Java 21   ----------------------------"
 
 
 echo "--- Install ANT 1.10  ----------------------------"
-    if [[ "$task" =~ ant_110|all ]]; then
-    ANT_VER='10'
+    if [[ "$task" =~ ant|all ]]; then
 
-    NEXUS_FILE_VAR="ANT_${ANT_VER}_NEXUS_FILE"
+    NEXUS_FILE_VAR="ANT_${ANT_NEXUS_FILE"
 
     download_nexus_file "$(eval echo \$$NEXUS_FILE_VAR)"  "$ANT_INSTALL_PATH/ant.tar.gz"
-    download_nexus_file $ANT_IVY_NEXUS_FILE  "$ANT_INSTALL_PATH/ivy.tar.gz"
-    download_nexus_file $ANT_CONTRIB_NEXUS_FILE  "$ANT_INSTALL_PATH/ant.contrib.jar"
-
-
     tar -xzf $ANT_INSTALL_PATH/ant.tar.gz -C $ANT_INSTALL_PATH
-    ANT_VERSION_FOLDER=$(tar -tf $ANT_INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
-    rm $ANT_INSTALL_PATH/java_jdk.tar.gz
+    ANT_VERSION_FOLDER=$(tar -tf $ANT_INSTALL_PATH/ant.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
+    rm $ANT_INSTALL_PATH/ant.tar.gz
 
-    ## Set an env to this for ref
-    echo "export ANT_HOME_${ANT_VER}=${ANT_INSTALL_PATH}/${ANT_VERSION_FOLDER}" | sudo tee /etc/profile.d/ant_home_${ANT_VER}_env.sh > /dev/null
-    echo "Created env: ANT_HOME_${ANT_VER}=${ANT_INSTALL_PATH}/${ANT_VERSION_FOLDER} for next bootup."
-    echo "If you want to use this version of ANT, export ANT_HOME=\$ANT_HOME_${ANT_VER}"
+    ## Set an env
+    echo "export ANT_HOME=${ANT_INSTALL_PATH}/${ANT_VERSION_FOLDER}" | sudo tee /etc/profile.d/ant_home_env.sh > /dev/null
+    echo "Created env: ANT_HOME=${ANT_INSTALL_PATH}/${ANT_VERSION_FOLDER} for next bootup."
 
-    echo "Done installing ANT $ANT_VER at ${ANT_INSTALL_PATH}/${ANT_VERSION_FOLDER}"
+    ### Download the ANT contrib jar right into ANT LIB folder
+    download_nexus_file $ANT_CONTRIB_NEXUS_FILE  $ANT_INSTALL_PATH/$ANT_VERSION_FOLDER/lib/ant.contrib.jar"
+
+
+    ### Deal with IVY now
+    download_nexus_file $ANT_IVY_NEXUS_FILE  "$ANT_INSTALL_PATH/ivy.tar.gz"
+    tar -xzf $ANT_INSTALL_PATH/ivy.tar.gz -C $ANT_INSTALL_PATH
+    IVY_VERSION_FOLDER=$(tar -tf $ANT_INSTALL_PATH/ivy.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
+    rm $ANT_INSTALL_PATH/ivy.tar.gz
+
+    ## Set an env
+    echo "export IVY_HOME=${ANT_INSTALL_PATH}/${IVY_VERSION_FOLDER}" | sudo tee /etc/profile.d/ivy_home_env.sh > /dev/null
+    echo "Created env: IVY_HOME=${ANT_INSTALL_PATH}/${IVY_VERSION_FOLDER} for next bootup."
+
+    ### Copy the pain IVY jar file to ant lib so it easy to use.
+    cp $ANT_INSTALL_PATH/$IVY_VERSION_FOLDER/ivy-2.5.3.jar $ANT_INSTALL_PATH/$ANT_VERSION_FOLDER/lib/
+
+    echo "Done installing ANT 1.10.x at ${ANT_INSTALL_PATH}/${IVY_VERSION_FOLDER}"
     else
-        echo "** Not set to install this ANT version.  Skipping this step."
+        echo "** Not set to install ANT.  Skipping this step."
     fi
     echo ''
