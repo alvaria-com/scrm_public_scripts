@@ -205,7 +205,7 @@ echo "--- Install ANT 1.10  ----------------------------"
     ### Copy the pain IVY jar file to ant lib so it easy to use.
     cp $ANT_INSTALL_PATH/$IVY_VERSION_FOLDER/ivy-2.5.3.jar $ANT_INSTALL_PATH/$ANT_VERSION_FOLDER/lib/
 
-    echo "Done installing ANT 1.10.x at ${ANT_INSTALL_PATH}/${IVY_VERSION_FOLDER}"
+    echo "Done installing ANT 1.10.x at ${ANT_INSTALL_PATH}/${ANT_VERSION_FOLDER}"
     else
         echo "** Not set to install ANT.  Skipping this step."
     fi
