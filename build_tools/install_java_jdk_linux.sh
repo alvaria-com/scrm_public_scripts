@@ -179,9 +179,7 @@ echo "--- Install Java 21   ----------------------------"
 echo "--- Install ANT 1.10  ----------------------------"
     if [[ "$task" =~ ant|all ]]; then
 
-    NEXUS_FILE_VAR="ANT_${ANT_NEXUS_FILE"
-
-    download_nexus_file "$(eval echo \$$NEXUS_FILE_VAR)"  "$ANT_INSTALL_PATH/ant.tar.gz"
+    download_nexus_file $ANT_NEXUS_FILE"  "$ANT_INSTALL_PATH/ant.tar.gz"
     tar -xzf $ANT_INSTALL_PATH/ant.tar.gz -C $ANT_INSTALL_PATH
     ANT_VERSION_FOLDER=$(tar -tf $ANT_INSTALL_PATH/ant.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
     rm $ANT_INSTALL_PATH/ant.tar.gz
