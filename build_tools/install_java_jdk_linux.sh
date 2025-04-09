@@ -120,7 +120,7 @@ if [[ "$task" =~ java_11|all ]]; then
     NEXUS_FILE_VAR="JAVA_${JAVA_VER}_NEXUS_FILE"
     download_nexus_file "$(eval echo \$$NEXUS_FILE_VAR)"  "$JDK_INSTALL_PATH/java_jdk.tar.gz"
 
-    tar -xvf $JDK_INSTALL_PATH/java_jdk.tar.gz -C $JDK_INSTALL_PATH
+    tar -xzf $JDK_INSTALL_PATH/java_jdk.tar.gz -C $JDK_INSTALL_PATH
     ## Let create a file to show what the full version of this java is:
     JAVA_VERSION_FOLDER=$(tar -tf $JDK_INSTALL_PATH/java_jdk.tar.gz | awk -F/ '{print $1}' | uniq | head -n 1)
     rm $JDK_INSTALL_PATH/java_jdk.tar.gz
