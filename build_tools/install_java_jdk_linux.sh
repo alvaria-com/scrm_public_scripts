@@ -229,7 +229,6 @@ if [[ "$task" =~ ant|all ]]; then
     ### Copy the pain IVY jar file to ant lib so it easy to use.
     cp $ANT_INSTALL_PATH/$IVY_VERSION_FOLDER/ivy-2.5.3.jar $ANT_INSTALL_PATH/$ANT_VERSION_FOLDER/lib/
 
-    echo "Done installing ANT 1.10.x at ${ANT_INSTALL_PATH}/${ANT_VERSION_FOLDER}"
     if [[ "$task" == ant ]]; then
         ### We just installing one thing so let set the path and env to use it.
         export ANT_HOME=${ANT_INSTALL_PATH}/${ANT_VERSION_FOLDER}
