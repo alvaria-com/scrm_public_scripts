@@ -68,7 +68,7 @@ if [[ "$task" =~ java_5|all ]]; then
     rm $JAVA_JDK_INSTALL_PATH/java_jdk.tar.gz
 
     ## Set an env to this for ref
-    echo "export JAVA_HOME_5=${JAVA_JDK_INSTALL_PATH}" | sudo tee /etc/profile.d/java_home_5_env.sh
+    echo "export JAVA_HOME_5=${JAVA_JDK_INSTALL_PATH}" | sudo tee /etc/profile.d/java_home_5_env.sh && source /etc/profile.d/java_home_5_env.sh
     echo "Created env: JAVA_HOME_5=${JAVA_JDK_INSTALL_PATH} for next bootup."
     echo "If you want to use this version of JDK, export JAVA_HOME=\$JAVA_HOME_5"
     
@@ -98,7 +98,7 @@ if [[ "$task" =~ java_8|all ]]; then
     rm $JDK_INSTALL_PATH/java_jdk.tar.gz
 
     ## Set an env to this for ref
-    echo "export JAVA_HOME_${JAVA_VER}=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh > /dev/null
+    echo "export JAVA_HOME_${JAVA_VER}=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh && source /etc/profile.d/java_home_${JAVA_VER}_env.sh
     echo "Created env: JAVA_HOME_${JAVA_VER}=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER} for next bootup."
     echo "If you want to use this version of JDK, export JAVA_HOME=\$JAVA_HOME_${JAVA_VER}"
 
@@ -126,7 +126,7 @@ if [[ "$task" =~ java_11|all ]]; then
     rm $JDK_INSTALL_PATH/java_jdk.tar.gz
 
     ## Set an env to this for ref
-    echo "export JAVA_HOME_${JAVA_VER}=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh > /dev/null
+    echo "export JAVA_HOME_${JAVA_VER}=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh && source /etc/profile.d/java_home_${JAVA_VER}_env.sh
     echo "Created env: JAVA_HOME_${JAVA_VER}=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER} for next bootup."
     echo "If you want to use this version of JDK, export JAVA_HOME=\$JAVA_HOME_${JAVA_VER}"
 
@@ -155,7 +155,7 @@ if [[ "$task" =~ java_17|all ]]; then
     rm $JDK_INSTALL_PATH/java_jdk.tar.gz
 
     ## Set an env to this for ref
-    echo "export JAVA_HOME_${JAVA_VER}=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh > /dev/null
+    echo "export JAVA_HOME_${JAVA_VER}=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh && source /etc/profile.d/java_home_${JAVA_VER}_env.sh
     echo "Created env: JAVA_HOME_${JAVA_VER}=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER} for next bootup."
     echo "If you want to use this version of JDK, export JAVA_HOME=\$JAVA_HOME_${JAVA_VER}"
 
@@ -184,9 +184,10 @@ if [[ "$task" =~ java_21|all ]]; then
     rm $JDK_INSTALL_PATH/java_jdk.tar.gz
 
     ## Set an env to this for ref
-    echo "export JAVA_HOME_${JAVA_VER}=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh > /dev/null
+    echo "export JAVA_HOME_${JAVA_VER}=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER}" | sudo tee /etc/profile.d/java_home_${JAVA_VER}_env.sh && source /etc/profile.d/java_home_${JAVA_VER}_env.sh
     echo "Created env: JAVA_HOME_${JAVA_VER}=${JDK_INSTALL_PATH}/${JAVA_VERSION_FOLDER} for next bootup."
     echo "If you want to use this version of JDK, export JAVA_HOME=\$JAVA_HOME_${JAVA_VER}"
+
 
     if [[ "$task" == java_21 ]]; then
         ### We just installing one thing so let set the path and env to use it.
@@ -208,8 +209,8 @@ if [[ "$task" =~ ant|all ]]; then
     rm $ANT_INSTALL_PATH/ant.tar.gz
 
     ## Set an env
-    echo "export PATH=${ANT_INSTALL_PATH}/${ANT_VERSION_FOLDER}/bin:\$PATH"  | sudo tee /etc/profile.d/java_home_env.sh
-    echo "export ANT_HOME=${ANT_INSTALL_PATH}/${ANT_VERSION_FOLDER}" | sudo tee -a /etc/profile.d/ant_env.sh > /dev/null
+    echo "export PATH=${ANT_INSTALL_PATH}/${ANT_VERSION_FOLDER}/bin:\$PATH" | sudo tee /etc/profile.d/ant_path_env.sh
+    echo "export ANT_HOME=${ANT_INSTALL_PATH}/${ANT_VERSION_FOLDER}" | sudo tee /etc/profile.d/ant_home_env.sh > /dev/null
     echo "Created env: ANT_HOME=${ANT_INSTALL_PATH}/${ANT_VERSION_FOLDER} for next bootup."
 
     ### Download the ANT contrib jar right into ANT LIB folder
