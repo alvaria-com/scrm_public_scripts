@@ -56,7 +56,7 @@ download_nexus_file() {
 
 
 if [[ "$task" =~ java_5|all ]]; then
-    printf "\n--- Install Java 5   -----------------------------"
+    printf "\n--- Install Java 5   -----------------------------\n"
     JAVA_JDK_INSTALL_PATH=$JDK_INSTALL_PATH/jdk_5
     mkdir -p $JAVA_JDK_INSTALL_PATH
     download_nexus_file  "$JAVA_05_NEXUS_FILE"  "$JAVA_JDK_INSTALL_PATH/java_jdk.tar.gz"
@@ -85,7 +85,7 @@ fi
 
 
 if [[ "$task" =~ java_8|all ]]; then
-    printf "\n--- Install Java 8   -----------------------------"
+    printf "\n--- Install Java 8   -----------------------------\n"
     JAVA_VER='08'
 
     NEXUS_FILE_VAR="JAVA_${JAVA_VER}_NEXUS_FILE"
@@ -114,7 +114,7 @@ fi
 
 
 if [[ "$task" =~ java_11|all ]]; then
-    printf "\n--- Install Java 11   ----------------------------"
+    printf "\n--- Install Java 11   ----------------------------\n"
     JAVA_VER='11'
 
     NEXUS_FILE_VAR="JAVA_${JAVA_VER}_NEXUS_FILE"
@@ -143,7 +143,7 @@ fi
 
 
 if [[ "$task" =~ java_17|all ]]; then
-    printf "\n--- Install Java 17   ----------------------------"
+    printf "\n--- Install Java 17   ----------------------------\n"
     JAVA_VER='17'
 
     NEXUS_FILE_VAR="JAVA_${JAVA_VER}_NEXUS_FILE"
@@ -172,7 +172,7 @@ fi
 
 
 if [[ "$task" =~ java_21|all ]]; then
-    printf "\n--- Install Java 21   ----------------------------"
+    printf "\n--- Install Java 21   ----------------------------\n"
     JAVA_VER='21'
 
     NEXUS_FILE_VAR="JAVA_${JAVA_VER}_NEXUS_FILE"
@@ -201,7 +201,7 @@ fi
 
 
 if [[ "$task" =~ ant|all ]]; then
-    printf "\n--- Install ANT 1.10  ----------------------------"
+    printf "\n--- Install ANT 1.10  ----------------------------\n"
 
     download_nexus_file $ANT_110_NEXUS_FILE  $ANT_INSTALL_PATH/ant.tar.gz
     tar -xzf $ANT_INSTALL_PATH/ant.tar.gz -C $ANT_INSTALL_PATH
