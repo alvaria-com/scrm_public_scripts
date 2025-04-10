@@ -5,9 +5,13 @@
 #  
 #   curl -Lfk https://github.com/alvaria-com/scrm_public_scripts/raw/refs/heads/main/build_tools/scrm-linux-boot-tasks.sh | sudo bash
 # 
+# Note!  This script read AWS to get some 
+#
+#
 # Created: Apr-10-2025 Hubers
 # Updates: xxx
 #--------------------------------------------------------------------------------------------------------------------------
+
 
 ### Main variables
   SERVICE_NAME="scrm-linux-boot-tasks"
@@ -19,11 +23,11 @@
 cat <<- 'EOF' > $SCRIPT_PATH
   #!/bin/bash
 
+
   ### Get Nexus readonly user and password from AWS Secret and change it to base64
   nxrm_readonly_data=$(aws secretsmanager get-secret-value \
                     --secret-id 'arn:aws:secretsmanager:us-east-2:018805767579:secret:scrm/nexus/serviceid/nexus-readonly' \
                     --query SecretString \
-                    --region us-east-2 \
                     --output text )
 
   ### Extract and encode the credentials using jq and base64
@@ -36,8 +40,6 @@ cat <<- 'EOF' > $SCRIPT_PATH
   echo "NEXUS_RO_PW=$encoded_cred" > /etc/environment
 EOF
 
-# Make the script executable
-chmod +x $SCRIPT_PATH
 
 # Create the systemd service file
 cat <<- EOF > $SERVICE_FILE
@@ -53,6 +55,10 @@ cat <<- EOF > $SERVICE_FILE
   [Install]
   WantedBy=multi-user.target
 EOF
+
+### Make the script executable
+chmod +x $SCRIPT_PATH
+chmod +x $SERVICE_FILE
 
 # Reload systemd, enable and start the service
 systemctl daemon-reload
