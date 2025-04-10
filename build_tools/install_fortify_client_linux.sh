@@ -1,4 +1,5 @@
-#-----------------------------------------------------------------------------------------------
+#!/bin/bash
+#--------------------------------------------------------------------------------------------------------------------------
 # Fortify client install for Linux base.  Can 
 # 
 #
@@ -6,7 +7,7 @@
 #   curl -Lfk https://github.com/alvaria-com/scrm_public_scripts/raw/refs/heads/main/build_tools/fortify_client_linux.sh | sudo bash -s <download|install|both>
 #
 # Created: Mar-31-2025 Hubers
-#-----------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------------------
 
 FORTIFY_FILE_URL='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-prod-hosted/scrm/build_tools/fortify/client/Fortify_SCA_24.4.0_linux_x64.run'
 FORTIFY_LICENSE_FILE_URL='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-prod-hosted/scrm/build_tools/fortify/license/fortify.license'

@@ -1,4 +1,5 @@
-#-----------------------------------------------------------------------------------------------
+#!/bin/bash
+#--------------------------------------------------------------------------------------------------------------------------
 #  Installs JAVA JDKs and ANT
 # 
 #  Run this script on a new linux system is to run the following command. You can pass arguments to the shell using the -s option:
@@ -6,7 +7,7 @@
 #
 # Created: Mar-31-2025 Hubers
 # Updates: xxx
-#-----------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------------------
 
 JAVA_08_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-prod-hosted/scrm/build_tools/java_jdk/zulu/zulu8.84.0.15-ca-jdk8.0.442-linux_x64.tar.gz'
 JAVA_11_NEXUS_FILE='https://nexus.aws.alvaria.com/nexus/repository/alvaria-raw-prod-hosted/scrm/build_tools/java_jdk/zulu/zulu11.78.15-ca-jdk11.0.26-linux_x64.tar.gz'
