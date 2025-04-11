@@ -3,7 +3,7 @@
 #  Script to create a script that run at instance bootup after network is ready. Used to update things before we use it.
 # 
 #  
-#   curl -Lfk https://github.com/alvaria-com/scrm_public_scripts/raw/refs/heads/main/build_tools/scrm-linux-boot-tasks.sh | sudo bash
+#  curl -Lfk https://github.com/alvaria-com/scrm_public_scripts/raw/refs/heads/main/build_tools/scrm-linux-boot-tasks.sh | sudo bash
 # 
 # Note!  This script read AWS to get some 
 #
@@ -28,6 +28,7 @@ cat <<- 'EOF' > $SCRIPT_PATH
   nxrm_readonly_data=$(aws secretsmanager get-secret-value \
                     --secret-id 'arn:aws:secretsmanager:us-east-2:018805767579:secret:scrm/nexus/serviceid/nexus-readonly' \
                     --query SecretString \
+                    --region us-east-2 \
                     --output text )
 
   ### Extract and encode the credentials using jq and base64
